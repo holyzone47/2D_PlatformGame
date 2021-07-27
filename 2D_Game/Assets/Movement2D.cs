@@ -28,7 +28,7 @@ public class Movement2D : MonoBehaviour
     {
         Rigid2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        jumpCount = maxJump;
+        jumpCount = maxJump; //점프카운트를 최대점프횟수로 초기화
     }
 
     void Update()
