@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Movement2D : MonoBehaviour
@@ -22,6 +24,10 @@ public class Movement2D : MonoBehaviour
     [SerializeField]
     public LayerMask islayer; //Found layer, return True
     int jumpCount;
+    float ST_Dash;
+    float DashCooltime = 3.0f;
+    bool isDash = true;
+    bool isMove;
     
     //CapsuleCollider2D
         void Start()
@@ -35,6 +41,7 @@ public class Movement2D : MonoBehaviour
     {
         move();
         Jump();
+        Dash();
     }
 
     void FixedUpdate()
@@ -55,6 +62,7 @@ public class Movement2D : MonoBehaviour
             Scale.x = Mathf.Abs(Scale.x); //Mathf.Abs = 절댓값
             transform.localScale = Scale;
             animator.SetBool("isMove",true);
+            isMove = true;
         }
         else if(x < 0)
         {
@@ -62,10 +70,12 @@ public class Movement2D : MonoBehaviour
             Scale.x = -Mathf.Abs(Scale.x);
             transform.localScale = Scale;
             animator.SetBool("isMove",true);
+            isMove = true;
         }
         else if(x == 0)
         {
             animator.SetBool("isMove",false);
+            isMove = false;
         }
 
     }
@@ -96,5 +106,42 @@ public class Movement2D : MonoBehaviour
             Gizmos.color = Color.red;
             Gizmos.DrawSphere(pos.position,checkRadius);
     }
+    void Dash()
+    {
+        if(isMove == true)
+        {
+            if(isDash == true)
+            {
+                if(Input.GetKeyDown(KeyCode.Z))
+                {
+                    ST_Dash = 3.0f;
+                    moveSpeed = 30;
+                    isDash = false;
+                    StartCoroutine("ST_DashCool");
+                    StartCoroutine("DashCool");
+                }
+            }
+        }
+    }
     
+    IEnumerator ST_DashCool()
+    {
+        if(ST_Dash > 0)
+        {
+            ST_Dash -= 1.0f;
+            yield return new WaitForSeconds(0.1f); 
+        }
+        moveSpeed = 3.0f;
+        yield break;
+    }
+    IEnumerator DashCool()
+    {
+        if(DashCooltime > 0)
+        {
+            DashCooltime -= 1.0f;
+            yield return new WaitForSeconds(1.0f);
+        }
+        isDash = true;
+        yield break;
+    }
 }

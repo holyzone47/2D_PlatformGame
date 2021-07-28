@@ -775,6 +775,7 @@ GameObject:
   - component: {fileID: 1617862431}
   - component: {fileID: 1617862433}
   - component: {fileID: 1617862432}
+  - component: {fileID: 1617862434}
   m_Layer: 6
   m_Name: Platform (4)
   m_TagString: Untagged
@@ -805,7 +806,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1617862430}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: f93bec9a70749cd48b429639beaac654, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -873,6 +874,30 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!68 &1617862434
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1617862430}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -1.0158529, y: -0.4616289}
+  - {x: -1.4985399, y: 0.5096669}
+  - {x: 1.5016308, y: 0.5175785}
+  - {x: 1.0721483, y: -0.4616289}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!1 &1705760042
 GameObject:
   m_ObjectHideFlags: 0
