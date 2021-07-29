@@ -23,11 +23,16 @@ public class Movement2D : MonoBehaviour
     public float checkRadius; //Make circle (Radius)
     [SerializeField]
     public LayerMask islayer; //Found layer, return True
-    int jumpCount;
-    float ST_Dash;
-    float DashCooltime = 3.0f;
-    bool isDash = true;
-    bool isMove;
+    [SerializeField]
+    int jumpCount; //Jump count variable
+    [SerializeField]
+    float ST_Dash; //Dash sustainment time variable
+    [SerializeField]
+    float DashCooltime = 3.0f; //Dash Cooltime variable
+    [SerializeField]
+    bool isDash = true; // is Dash?
+    [SerializeField]
+    bool isMove; //is Move?
     
     //CapsuleCollider2D
         void Start()
@@ -116,6 +121,7 @@ public class Movement2D : MonoBehaviour
                 {
                     ST_Dash = 3.0f;
                     moveSpeed = 30;
+                    DashCooltime = 3.0f;
                     isDash = false;
                     StartCoroutine("ST_DashCool");
                     StartCoroutine("DashCool");
@@ -124,22 +130,22 @@ public class Movement2D : MonoBehaviour
         }
     }
     
-    IEnumerator ST_DashCool()
+    IEnumerator ST_DashCool() //대쉬지속시간
     {
         if(ST_Dash > 0)
         {
             ST_Dash -= 1.0f;
-            yield return new WaitForSeconds(0.1f); 
+            yield return new WaitForSeconds(0.1f); //0.1초 동안 moveSpeed = 30
         }
         moveSpeed = 3.0f;
         yield break;
     }
-    IEnumerator DashCool()
+    IEnumerator DashCool() //대쉬 재사용시간
     {
         if(DashCooltime > 0)
         {
             DashCooltime -= 1.0f;
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(3.0f); //대쉬 쿨타임이 3초
         }
         isDash = true;
         yield break;
